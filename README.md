@@ -1,6 +1,7 @@
-Project 3 - JavaScript Implementation
+Project 4 - JavaScript Implementation
 
-This update adds lightweight interactivity to the Snowden website using a single minimal main.js file. The goal was to keep JavaScript usage to around 10% of the codebase, letting the existing CSS handle the visual heavy lifting. Four core features were implemented: a days counter that animates up to the real number of days since the NSA leak, a redacted text reveal that toggles hidden text on click, a dark/light theme toggle, and a back to top button that appears on scroll. Features from earlier versions such as the vote system, cursor trail, sound toggle, and typewriter effect were stripped out to keep the code clean and focused. A key debugging challenge involved a Linux case-sensitivity issue where the file was named Main.JS instead of main.js, which caused the browser to refuse to load the script entirely.
+This update adds lightweight interactivity to the Snowden website using a single minimal main.js file. The goal was to keep JavaScript usage to around 5% of the codebase, letting the existing CSS handle the visual heavy lifting. Four core features were implemented: a days counter that animates up to the real number of days since the NSA leak, a redacted text reveal that toggles hidden text on click, a dark/light theme toggle, and a back to top button that appears on scroll. Features from earlier versions such as the vote system, cursor trail, sound toggle, and typewriter effect were stripped out to keep the code clean and focused. A key debugging challenge involved a Linux case-sensitivity issue where the file was named Main.JS instead of main.js, which caused the browser to refuse to load the script entirely.
+
 What I Learned
 
 How to write minimal JavaScript that only does what is necessary
