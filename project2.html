@@ -7,7 +7,12 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
+ 
+  <!-- TOOLBAR -->
+  <div class="toolbar">
+    <button class="toolbar-btn" id="theme-toggle">☀ DECLASSIFIED VIEW</button>
+  </div>
+ 
   <header>
     <nav>
       <ul>
@@ -16,131 +21,139 @@
       </ul>
     </nav>
   </header>
-
+ 
   <main>
-
+ 
     <div class="hero">
       <p class="hero-eyebrow">// Chronological Event Log — Declassified</p>
       <h1 class="glitch" data-text="Detailed Timeline">Detailed Timeline</h1>
       <p class="hero-tagline">A chronicle of document copying, leaks, and flight from justice.</p>
     </div>
-
+ 
+    <!-- DAYS COUNTER -->
+    <div class="days-counter-box">
+      <span class="days-number" id="days-counter">0</span>
+      <span class="days-label">days since the first NSA leak — June 5, 2013</span>
+    </div>
+ 
+    <!-- VERTICAL TIMELINE -->
     <div class="timeline">
-
-      <div class="timeline-item">
+ 
+      <div class="timeline-item visible">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <p class="timeline-date">April 2012</p>
-          <p class="timeline-text">Begins downloading NSA documents while at Dell contractor role.</p>
+          <p class="timeline-text">Begins downloading <span class="redacted">NSA documents</span> while at Dell contractor role.</p>
         </div>
       </div>
-
-      <div class="timeline-item">
+ 
+      <div class="timeline-item visible">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <p class="timeline-date">December 2012</p>
           <p class="timeline-text">Contacts journalists anonymously with document samples.</p>
         </div>
       </div>
-
-      <div class="timeline-item">
+ 
+      <div class="timeline-item visible">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <p class="timeline-date">Jan – Mar 2013</p>
-          <p class="timeline-text">Joins Booz Allen Hamilton in Hawaii for more document access; continues copying classified files.</p>
+          <p class="timeline-text">Joins <span class="redacted">Booz Allen Hamilton</span> in Hawaii for more document access; continues copying classified files.</p>
         </div>
       </div>
-
-      <div class="timeline-item">
+ 
+      <div class="timeline-item visible">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <p class="timeline-date">May 20, 2013</p>
           <p class="timeline-text">Arrives in Hong Kong from Hawaii with copied documents to meet journalists.</p>
         </div>
       </div>
-
-      <div class="timeline-item">
+ 
+      <div class="timeline-item visible">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <p class="timeline-date">June 2, 2013</p>
           <p class="timeline-text">Journalists Glenn Greenwald and Laura Poitras arrive in Hong Kong; receive the full document cache.</p>
         </div>
       </div>
-
-      <div class="timeline-item">
+ 
+      <div class="timeline-item visible">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <p class="timeline-date">June 5, 2013</p>
-          <p class="timeline-text">The Guardian publishes first story on NSA collecting Verizon phone records in bulk.</p>
+          <p class="timeline-text">The Guardian publishes first story on NSA collecting <span class="redacted">Verizon phone records</span> in bulk.</p>
         </div>
       </div>
-
-      <div class="timeline-item">
+ 
+      <div class="timeline-item visible">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <p class="timeline-date">June 6–7, 2013</p>
-          <p class="timeline-text">Revelations on PRISM program: NSA accessing data from Google, Facebook, and others.</p>
+          <p class="timeline-text">Revelations on <span class="redacted">PRISM program</span>: NSA accessing data from Google, Facebook, and others.</p>
         </div>
       </div>
-
-      <div class="timeline-item">
+ 
+      <div class="timeline-item visible">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <p class="timeline-date">June 9, 2013</p>
           <p class="timeline-text">Snowden publicly identified as source in Guardian interview filmed in Hong Kong.</p>
         </div>
       </div>
-
-      <div class="timeline-item">
+ 
+      <div class="timeline-item visible">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <p class="timeline-date">June 11, 2013</p>
           <p class="timeline-text">Fired by Booz Allen Hamilton for violating the company's ethics code.</p>
         </div>
       </div>
-
-      <div class="timeline-item">
+ 
+      <div class="timeline-item visible">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <p class="timeline-date">June 22, 2013</p>
-          <p class="timeline-text">U.S. charges Snowden with espionage and theft of government property; requests extradition.</p>
+          <p class="timeline-text">U.S. charges Snowden with <span class="redacted">espionage and theft</span> of government property; requests extradition.</p>
         </div>
       </div>
-
-      <div class="timeline-item">
+ 
+      <div class="timeline-item visible">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <p class="timeline-date">June 23, 2013</p>
           <p class="timeline-text">Snowden flies from Hong Kong to Moscow on Aeroflot; U.S. passport revoked mid-flight.</p>
         </div>
       </div>
-
-      <div class="timeline-item">
+ 
+      <div class="timeline-item visible">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <p class="timeline-date">July 1, 2013</p>
           <p class="timeline-text">Applies for asylum in Russia; Putin conditions it on stopping intelligence leaks.</p>
         </div>
       </div>
-
-      <div class="timeline-item">
+ 
+      <div class="timeline-item visible">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <p class="timeline-date">August 1, 2013</p>
           <p class="timeline-text">Granted temporary asylum in Russia after spending over a month in Moscow's Sheremetyevo airport.</p>
         </div>
       </div>
-
-      <div class="timeline-item">
+ 
+      <div class="timeline-item visible">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <p class="timeline-date">2013 – Present</p>
-          <p class="timeline-text">Lives in Russia; asylum repeatedly extended. Russian citizenship granted in 2022.</p>
+          <p class="timeline-text">Lives in Russia; asylum repeatedly extended. <span class="redacted">Russian citizenship granted in 2022.</span></p>
         </div>
       </div>
-
+ 
     </div>
-
+ 
+    <!-- REFERENCE TABLE -->
     <table>
       <caption>Quick Reference Table</caption>
       <thead>
@@ -166,9 +179,9 @@
         <tr><td>2013–Present</td><td>Resides in Russia; citizenship granted 2022.</td></tr>
       </tbody>
     </table>
-
+ 
   </main>
-
+ 
   <footer>
     <h2>// Sources</h2>
     <ul>
@@ -177,7 +190,10 @@
       <li><a href="https://en.wikipedia.org/wiki/Edward_Snowden">Wikipedia: Edward Snowden</a></li>
     </ul>
   </footer>
-
-  
+ 
+  <!-- BACK TO TOP -->
+  <button id="back-to-top">▲ TOP</button>
+ 
+  <script src="main.js"></script>
 </body>
 </html>

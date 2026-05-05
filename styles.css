@@ -7,11 +7,9 @@
   --red:        #ff2a2a;
   --red-dim:    #8b0000;
   --red-glow:   rgba(255,42,42,0.18);
-  --red-faint:  rgba(255,42,42,0.06);
   --bg:         #080808;
   --surface:    #101010;
   --surface2:   #0d0d0d;
-  --border:     #1e1e1e;
   --text:       #dcdcdc;
   --text-dim:   #888;
   --stamp-red:  rgba(255,30,30,0.65);
@@ -19,7 +17,6 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
 
 body {
@@ -30,10 +27,39 @@ body {
   line-height: 1.7;
   min-height: 100vh;
   cursor: crosshair;
+  transition: background 0.4s, color 0.4s;
 }
 
 /* ============================================================
-   ANIMATED SCANLINES (scrolling)
+   LIGHT MODE
+   ============================================================ */
+body.light-mode {
+  --bg:       #f0ede6;
+  --surface:  #faf8f4;
+  --surface2: #f0ede6;
+  --text:     #1a1a1a;
+  --text-dim: #555;
+  --red:      #cc1a1a;
+  --red-dim:  #8b0000;
+  --stamp-red: rgba(180,0,0,0.6);
+}
+
+body.light-mode main {
+  box-shadow: 0 0 60px rgba(180,0,0,0.08);
+}
+
+body.light-mode section { background: #ede9e0; }
+body.light-mode section:hover { background: #e0dbd0; }
+body.light-mode blockquote { background: #e8e3d8; }
+body.light-mode header { background: rgba(240,237,230,0.95); }
+body.light-mode .timeline-card { background: #ede9e0; }
+body.light-mode .days-counter-box { background: #ede9e0; }
+body.light-mode .vote-box { background: #ede9e0; }
+body.light-mode #timeline-search { background: #ede9e0; color: #1a1a1a; }
+body.light-mode #back-to-top { background: #e0dbd0; }
+
+/* ============================================================
+   SCANLINES
    ============================================================ */
 body::after {
   content: "";
@@ -42,7 +68,7 @@ body::after {
   background: repeating-linear-gradient(
     transparent,
     transparent 3px,
-    rgba(255, 0, 0, 0.025) 4px
+    rgba(255,0,0,0.025) 4px
   );
   pointer-events: none;
   z-index: 9999;
@@ -55,7 +81,39 @@ body::after {
 }
 
 /* ============================================================
-   NAVIGATION — STICKY
+   TOOLBAR
+   ============================================================ */
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 8px 20px;
+  background: #000;
+  border-bottom: 1px solid #1a0000;
+}
+
+.toolbar-btn {
+  background: transparent;
+  border: 1px solid var(--red-dim);
+  color: var(--text-dim);
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  padding: 4px 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+
+.toolbar-btn:hover,
+.toolbar-btn.active {
+  border-color: var(--red);
+  color: var(--red);
+  text-shadow: 0 0 6px var(--red);
+}
+
+/* ============================================================
+   NAVIGATION
    ============================================================ */
 header {
   background: rgba(0,0,0,0.92);
@@ -100,11 +158,7 @@ nav a::after {
 
 nav a:hover { color: #fff; text-shadow: 0 0 8px var(--red); }
 nav a:hover::after { width: 100%; }
-
-nav a.active {
-  color: #fff;
-  text-shadow: 0 0 8px var(--red);
-}
+nav a.active { color: #fff; text-shadow: 0 0 8px var(--red); }
 nav a.active::after { width: 100%; }
 
 /* ============================================================
@@ -120,14 +174,13 @@ main {
 }
 
 /* ============================================================
-   HERO SECTION
+   HERO
    ============================================================ */
 .hero {
   text-align: center;
   padding: 20px 0 40px;
   margin-bottom: 40px;
   border-bottom: 1px solid #1e0000;
-  position: relative;
 }
 
 .hero-eyebrow {
@@ -150,6 +203,50 @@ main {
 }
 
 /* ============================================================
+   DAYS COUNTER
+   ============================================================ */
+.days-counter-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 0;
+  padding: 24px;
+  border: 1px solid #1e0000;
+  background: var(--surface2);
+  position: relative;
+}
+
+.days-counter-box::before {
+  content: "// LIVE SURVEILLANCE CLOCK";
+  position: absolute;
+  top: -10px; left: 16px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  color: var(--red);
+  background: var(--surface2);
+  padding: 0 8px;
+}
+
+.days-number {
+  font-family: 'Oswald', sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--red);
+  text-shadow: 0 0 20px rgba(255,42,42,0.4);
+  line-height: 1;
+}
+
+.days-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+/* ============================================================
    H1 — GLITCH
    ============================================================ */
 h1 {
@@ -162,10 +259,7 @@ h1 {
   line-height: 1.15;
   position: relative;
   display: inline-block;
-}
-
-h1.glitch {
-  animation: glitch 4s infinite;
+  min-height: 1.15em;
 }
 
 h1.glitch::before,
@@ -175,43 +269,53 @@ h1.glitch::after {
   top: 0; left: 0;
   width: 100%;
   color: var(--red);
+  opacity: 0;
 }
 
 h1.glitch::before {
-  animation: glitch-top 4s infinite;
   clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
-  transform: translateX(-3px);
-  opacity: 0.75;
   color: #ff6060;
 }
 
 h1.glitch::after {
-  animation: glitch-bot 4s infinite;
   clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
-  transform: translateX(3px);
-  opacity: 0.75;
   color: #a00;
 }
 
-@keyframes glitch {
-  0%, 90%, 100% { transform: none; }
-  92%  { transform: skewX(-1deg); }
-  94%  { transform: skewX(1deg); }
-  96%  { transform: none; }
+h1.glitch-burst::before {
+  animation: glitch-top-burst 0.4s steps(1) forwards;
+}
+h1.glitch-burst::after {
+  animation: glitch-bot-burst 0.4s steps(1) forwards;
+}
+h1.glitch-burst {
+  animation: glitch-body-burst 0.4s steps(1) forwards;
 }
 
-@keyframes glitch-top {
-  0%, 88%, 100% { transform: translateX(-3px); opacity: 0; }
-  90%  { transform: translateX(4px); opacity: 0.7; }
-  92%  { transform: translateX(-4px); opacity: 0.5; }
-  94%  { opacity: 0; }
+@keyframes glitch-body-burst {
+  0%   { transform: none; }
+  20%  { transform: skewX(-3deg) translateX(2px); }
+  40%  { transform: skewX(2deg) translateX(-2px); }
+  60%  { transform: skewX(-1deg); }
+  80%  { transform: translateX(1px); }
+  100% { transform: none; }
 }
 
-@keyframes glitch-bot {
-  0%, 88%, 100% { transform: translateX(3px); opacity: 0; }
-  91%  { transform: translateX(-5px); opacity: 0.6; }
-  93%  { transform: translateX(5px); opacity: 0.4; }
-  95%  { opacity: 0; }
+@keyframes glitch-top-burst {
+  0%   { opacity: 0; }
+  20%  { opacity: 0.8; transform: translateX(6px); }
+  40%  { opacity: 0.5; transform: translateX(-4px); }
+  60%  { opacity: 0.7; transform: translateX(3px); }
+  80%  { opacity: 0.3; }
+  100% { opacity: 0; transform: translateX(-3px); }
+}
+
+@keyframes glitch-bot-burst {
+  0%   { opacity: 0; }
+  25%  { opacity: 0.6; transform: translateX(-5px); }
+  50%  { opacity: 0.8; transform: translateX(4px); }
+  75%  { opacity: 0.4; }
+  100% { opacity: 0; transform: translateX(3px); }
 }
 
 /* ============================================================
@@ -289,16 +393,11 @@ figcaption {
   margin: 30px 0;
 }
 
-.debate-grid section {
-  margin: 0;
-}
-
-.section-intro {
-  margin-bottom: 30px;
-}
+.debate-grid section { margin: 0; }
+.section-intro { margin-bottom: 30px; }
 
 /* ============================================================
-   SECTIONS — CLASSIFIED stamp
+   SECTIONS
    ============================================================ */
 section {
   background: var(--surface2);
@@ -312,8 +411,7 @@ section {
 section::before {
   content: "CLASSIFIED";
   position: absolute;
-  top: -11px;
-  right: 12px;
+  top: -11px; right: 12px;
   font-family: 'Oswald', sans-serif;
   font-size: 0.65rem;
   letter-spacing: 3px;
@@ -324,17 +422,49 @@ section::before {
   transition: color 0.3s, border-color 0.3s;
 }
 
-section:hover {
-  border-left-color: var(--red);
-  background: #111;
-}
-
+section:hover { border-left-color: var(--red); background: #111; }
 section:hover::before {
   content: "DECLASSIFIED";
   color: var(--green);
   border-color: var(--green);
   text-shadow: 0 0 6px var(--green);
 }
+
+/* ============================================================
+   REDACTED TEXT
+   ============================================================ */
+.redacted {
+  background: #111;
+  color: transparent;
+  cursor: pointer;
+  border-radius: 2px;
+  padding: 0 4px;
+  user-select: none;
+  transition: background 0.3s, color 0.3s;
+  position: relative;
+  display: inline-block;
+}
+
+.redacted::after {
+  content: "[CLICK TO REVEAL]";
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.6rem;
+  color: var(--red);
+  letter-spacing: 1px;
+  white-space: nowrap;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.redacted.revealed {
+  background: transparent;
+  color: var(--red);
+  text-shadow: 0 0 6px rgba(255,42,42,0.4);
+}
+
+.redacted.revealed::after { display: none; }
 
 /* ============================================================
    BLOCKQUOTE
@@ -436,8 +566,7 @@ tr:nth-child(even) td { background: rgba(255,255,255,0.012); }
 .timeline::before {
   content: '';
   position: absolute;
-  left: 50%;
-  top: 0; bottom: 0;
+  left: 50%; top: 0; bottom: 0;
   width: 2px;
   background: linear-gradient(to bottom, transparent, var(--red-dim) 5%, var(--red-dim) 95%, transparent);
   transform: translateX(-50%);
@@ -449,19 +578,25 @@ tr:nth-child(even) td { background: rgba(255,255,255,0.012); }
   padding-right: calc(50% + 30px);
   margin-bottom: 36px;
   position: relative;
-  opacity: 1;
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
+
+.timeline-item.visible { opacity: 1; transform: translateX(0); }
 
 .timeline-item:nth-child(even) {
   justify-content: flex-start;
   padding-right: 0;
   padding-left: calc(50% + 30px);
+  transform: translateX(24px);
 }
+
+.timeline-item:nth-child(even).visible { transform: translateX(0); }
 
 .timeline-dot {
   position: absolute;
-  left: 50%;
-  top: 14px;
+  left: 50%; top: 14px;
   width: 12px; height: 12px;
   background: var(--red);
   border: 2px solid var(--bg);
@@ -472,9 +607,7 @@ tr:nth-child(even) td { background: rgba(255,255,255,0.012); }
   z-index: 2;
 }
 
-.timeline-item:hover .timeline-dot {
-  box-shadow: 0 0 18px var(--red);
-}
+.timeline-item:hover .timeline-dot { box-shadow: 0 0 18px var(--red); }
 
 .timeline-card {
   background: var(--surface2);
@@ -507,6 +640,30 @@ tr:nth-child(even) td { background: rgba(255,255,255,0.012); }
 }
 
 /* ============================================================
+   BACK TO TOP
+   ============================================================ */
+#back-to-top {
+  position: fixed;
+  bottom: 30px; right: 30px;
+  background: #0a0000;
+  border: 1px solid var(--red-dim);
+  color: var(--red);
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  padding: 10px 14px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, border-color 0.2s, box-shadow 0.2s;
+  z-index: 500;
+  text-transform: uppercase;
+}
+
+#back-to-top.visible { opacity: 1; pointer-events: auto; }
+#back-to-top:hover { border-color: var(--red); box-shadow: 0 0 12px rgba(255,0,0,0.3); }
+
+/* ============================================================
    FOOTER
    ============================================================ */
 footer {
@@ -534,10 +691,7 @@ footer a {
   transition: color 0.2s, text-shadow 0.2s;
 }
 
-footer a:hover {
-  color: #fff;
-  text-shadow: 0 0 6px var(--red);
-}
+footer a:hover { color: #fff; text-shadow: 0 0 6px var(--red); }
 
 /* ============================================================
    RESPONSIVE
@@ -545,7 +699,6 @@ footer a:hover {
 @media (max-width: 720px) {
   main { padding: 30px 20px; }
   h1 { font-size: 1.8rem; }
-
   .debate-grid { grid-template-columns: 1fr; }
 
   .timeline::before { left: 20px; }
@@ -554,7 +707,9 @@ footer a:hover {
     justify-content: flex-start;
     padding-left: 50px;
     padding-right: 0;
+    transform: translateX(0);
   }
+  .timeline-item.visible { transform: translateX(0); }
   .timeline-dot { left: 20px; }
   .timeline-card { max-width: 100%; }
 }
